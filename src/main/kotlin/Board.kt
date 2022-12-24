@@ -7,6 +7,16 @@ class Board {
     fun setPos(posX: Int, posY: Int, piece: Pieces){
         board[posY][posX]= piece
     }
+    fun inputTextBoard(boardString:String){
+        //TODO Create a boardString validator
+        var counter=0
+        for (y in 0..2) {
+            for( x in 0..2){
+                this.board[y][x]=Pieces.getPiece(boardString[counter])
+                counter++
+            }
+        }
+    }
     override fun toString(): String {
         var finalString: String = ""
         for(line in board){
