@@ -8,7 +8,14 @@ class BoardTest {
     fun setUp() {
         board=Board()
     }
-
+@Test
+    fun Should_BoardMatch_When_EnteredAsTextInput(){
+    var textBoard= "xxxooox__"
+    var exptected ="X  X  X  \nO  O  O  \nX  _  _  \n"
+    board!!.inputTextBoard(textBoard)
+    var result= board.toString()
+    assertEquals(exptected, result)
+}
 
 
     @org.junit.jupiter.api.AfterEach
