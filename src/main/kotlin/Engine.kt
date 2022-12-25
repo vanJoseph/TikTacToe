@@ -5,7 +5,7 @@ class Engine {
     private val playersTurn = Pieces.PLAYER_X
     private var turnNumber = 0
     fun startNewGame() {
-        board.reset()
+        resetGame()
         while(!checkEndGame()) {
             var playerMove = getplayerInput()
             while (true) {
@@ -13,10 +13,16 @@ class Engine {
                     break
             }
             board.setPos(playerMove[0].toInt(), playerMove[1].toInt(), playersTurn)
+            turnNumber++
             println(board)
         }
 
 
+    }
+
+    private fun resetGame() {
+        turnNumber= 0
+        board.reset()
     }
 
     fun checkEndGame():Boolean{
