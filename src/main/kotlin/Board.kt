@@ -17,6 +17,13 @@ class Board {
             }
         }
     }
+    fun reset(){
+        for(y in 0..2){
+            for (x in 0 .. 2){
+                setPos(x,y,Pieces.NONE)
+            }
+        }
+    }
     override fun toString(): String {
         var finalString: String = ""
         for(line in board){
