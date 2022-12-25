@@ -23,8 +23,8 @@ class BoardTest {
         var fullBoard = "oxoxoxoxo"
         var exptected = "_  _  _  \n_  _  _  \n_  _  _  \n"
         board!!.inputTextBoard(fullBoard)
-        var result = board!!.toString()
         board!!.reset()
+        var result = board!!.toString()
         assertEquals(exptected,result)
     }
 
