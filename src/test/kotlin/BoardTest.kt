@@ -28,6 +28,16 @@ class BoardTest {
         assertEquals(exptected,result)
     }
 
+    @Test
+    fun getTextBoard() {
+        var expected ="xxxoooxxx".uppercase()
+        board!!.inputTextBoard(expected)
+
+        var result = board!!.getTextBoard()
+        assertEquals(expected,result)
+
+    }
+
     @org.junit.jupiter.api.AfterEach
     fun tearDown() {
     }
