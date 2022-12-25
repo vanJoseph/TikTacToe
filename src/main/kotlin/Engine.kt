@@ -6,12 +6,23 @@ class Engine {
     private var turnNumber = 0
     fun startNewGame() {
         board.reset()
-        while(true) {
-            if (validateInput(getplayerInput()))
-                break
+        while(!checkEndGame()) {
+            var playerMove = getplayerInput()
+            while (true) {
+                if (validateInput(playerMove))
+                    break
+            }
+            board.setPos(playerMove[0].toInt(), playerMove[1].toInt(), playersTurn)
+            println(board)
         }
+
+
     }
 
+    fun checkEndGame():Boolean{
+        return false
+
+    }
     fun getplayerInput(): List<String> {
         println("Player ${this.playersTurn.toString()}'s Turn: ")
         return readln().split(",")
