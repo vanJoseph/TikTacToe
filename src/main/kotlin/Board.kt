@@ -17,6 +17,15 @@ class Board {
             }
         }
     }
+    fun getTextBoard():String{
+        val textBoard= StringBuilder()
+        for(y in 0..2){
+            for(pos in 0..2){
+                textBoard.append(board[y][pos].toString())
+            }
+        }
+        return textBoard.toString()
+    }
     fun reset(){
         for(y in 0..2){
             for (x in 0 .. 2){
