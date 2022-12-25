@@ -2,7 +2,7 @@ import java.lang.NumberFormatException
 
 class Engine {
     private val board = Board()
-    private val playersTurn = Pieces.PLAYER_X
+    private var playersTurn = Pieces.PLAYER_X
     private var turnNumber = 0
     fun startNewGame() {
         resetGame()
@@ -13,11 +13,19 @@ class Engine {
                     break
             }
             board.setPos(playerMove[0].toInt(), playerMove[1].toInt(), playersTurn)
-            turnNumber++
-            println(board)
+            changeTurn()
         }
 
 
+    }
+
+    private fun changeTurn() {
+        turnNumber++
+        println(board)
+        if (playersTurn == Pieces.PLAYER_X)
+            playersTurn = Pieces.PLAYER_O
+        else
+            playersTurn = Pieces.PLAYER_X
     }
 
     private fun resetGame() {
