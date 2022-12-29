@@ -36,29 +36,31 @@ class Engine {
     }
 
     fun checkEndGame(): Boolean {
-        if(checkEndgameHorizontals())
+        if (checkEndgameHorizontals())
             return true
-        if(checkEndgameVerticals())
+        if (checkEndgameVerticals())
             return true
-        //todo check diagonals
+        if (checkEndgameDiagonals())
+            return true
         //todo check for full board
         return false
 
     }
-    private fun checkEndgameHorizontals(): Boolean{
-        for (y in 0..2){
-            var checkPiece= Pieces.NONE
-            var checkPieceTally =0
-            for (pos in 0..2){
-                var posPiece= board.getPos(pos,y)
-                if(posPiece==Pieces.NONE){
+
+    private fun checkEndgameHorizontals(): Boolean {
+        for (y in 0..2) {
+            var checkPiece = Pieces.NONE
+            var checkPieceTally = 0
+            for (pos in 0..2) {
+                var posPiece = board.getPos(pos, y)
+                if (posPiece == Pieces.NONE) {
                     break
-                }else{
-                    if(checkPiece == Pieces.NONE) {
+                } else {
+                    if (checkPiece == Pieces.NONE) {
                         checkPiece = posPiece
                         checkPieceTally++
-                    }else{
-                        if(checkPiece!=posPiece)
+                    } else {
+                        if (checkPiece != posPiece)
                             break
                         checkPieceTally++
                     }
@@ -67,7 +69,7 @@ class Engine {
                 }
 
             }
-            if (checkPieceTally==3)
+            if (checkPieceTally == 3)
                 return true
 
         }
@@ -75,20 +77,49 @@ class Engine {
 
         return false
     }
-    private fun checkEndgameVerticals(): Boolean{
-        for (x in 0..2){
-            var checkPiece= Pieces.NONE
-            var checkPieceTally =0
-            for (pos in 0..2){
-                var posPiece= board.getPos(x,pos)
-                if(posPiece==Pieces.NONE){
+
+    private fun checkEndgameDiagonals(): Boolean { //TODO does not work need to fix
+        val xDiagonalArray = arrayOf(0, 1, 2, 2, 1, 0 )
+        val yDiagonalArray = arrayOf(0, 1, 2, 0, 1, 2 )
+
+
+        for (i in 0..5) {
+            var checkPiece = Pieces.NONE
+            var checkPieceTally = 0
+            var posPiece = board.getPos(xDiagonalArray[i], yDiagonalArray[i])
+
+            if (checkPiece == Pieces.NONE) {
+
+
+                checkPiece = posPiece
+                checkPieceTally = 1
+            } else {
+                if (checkPiece != posPiece)
+                    checkPieceTally = 0
+            }
+            if (checkPieceTally == 3)
+                return true
+        }
+
+
+
+        return false
+    }
+
+    private fun checkEndgameVerticals(): Boolean {
+        for (x in 0..2) {
+            var checkPiece = Pieces.NONE
+            var checkPieceTally = 0
+            for (pos in 0..2) {
+                var posPiece = board.getPos(x, pos)
+                if (posPiece == Pieces.NONE) {
                     break
-                }else{
-                    if(checkPiece == Pieces.NONE) {
+                } else {
+                    if (checkPiece == Pieces.NONE) {
                         checkPiece = posPiece
                         checkPieceTally++
-                    }else{
-                        if(checkPiece!=posPiece)
+                    } else {
+                        if (checkPiece != posPiece)
                             break
                         checkPieceTally++
                     }
@@ -97,7 +128,7 @@ class Engine {
                 }
 
             }
-            if (checkPieceTally==3)
+            if (checkPieceTally == 3)
                 return true
 
         }
