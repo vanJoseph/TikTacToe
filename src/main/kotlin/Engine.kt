@@ -4,6 +4,7 @@ class Engine {
     private val board = Board()
     private var playersTurn = Pieces.PLAYER_X
     private var turnNumber = 0
+    private var winner = Pieces.NONE
     fun startNewGame() {
         resetGame()
         while (!checkEndGame()) {
@@ -35,11 +36,44 @@ class Engine {
     }
 
     fun checkEndGame(): Boolean {
-
+        if(checkEndgameHorizontals())
+            return true
+        //todo check verticals
+        //todo check diagonals
+        //todo check for full board
         return false
 
     }
+    private fun checkEndgameHorizontals(): Boolean{
+        for (y in 0..2){
+            var checkPiece= Pieces.NONE
+            var checkPieceTally =0
+            for (pos in 0..2){
+                var posPiece= board.getPos(pos,y)
+                if(posPiece==Pieces.NONE){
+                    break
+                }else{
+                    if(checkPiece == Pieces.NONE) {
+                        checkPiece = posPiece
+                        checkPieceTally++
+                    }else{
+                        if(checkPiece!=posPiece)
+                            break
+                        checkPieceTally++
+                    }
 
+
+                }
+
+            }
+            if (checkPieceTally==3)
+                return true
+
+        }
+
+
+        return false
+    }
 
     fun getplayerInput(): List<String> {
         println("Player ${this.playersTurn.toString()}'s Turn: ")
