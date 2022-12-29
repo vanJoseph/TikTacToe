@@ -7,10 +7,11 @@ class Engine {
     fun startNewGame() {
         resetGame()
         while (!checkEndGame()) {
-            val playerMove = getplayerInput()
+            var playerMove = getplayerInput()
             while (true) {
                 if (validateInput(playerMove))
                     break
+                playerMove = getplayerInput()
             }
             board.setPos(playerMove[0].toInt(), playerMove[1].toInt(), playersTurn)
             changeTurn()
@@ -34,9 +35,11 @@ class Engine {
     }
 
     fun checkEndGame(): Boolean {
+
         return false
 
     }
+
 
     fun getplayerInput(): List<String> {
         println("Player ${this.playersTurn.toString()}'s Turn: ")
