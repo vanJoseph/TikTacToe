@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.TestFactory
 
 class EngineTest {
     var engine: Engine? = null
@@ -69,5 +70,12 @@ class EngineTest {
         result= engine!!.validateInput(legalMove)
         assertTrue(result)
 
+    }
+    @Test
+    fun checkEndgame_Horizontal(){
+        engine!!.setTextBoard("______XXX")
+
+        var result = engine!!.checkEndGame()
+        assertTrue(result)
     }
 }
