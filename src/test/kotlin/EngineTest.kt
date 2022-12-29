@@ -78,4 +78,11 @@ class EngineTest {
         var result = engine!!.checkEndGame()
         assertTrue(result)
     }
+    @Test
+    fun checkEndgame_Vertical(){
+        engine!!.setTextBoard("X__X__X__")
+
+        var result = engine!!.checkEndGame()
+        assertTrue(result)
+    }
 }
