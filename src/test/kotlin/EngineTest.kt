@@ -85,4 +85,15 @@ class EngineTest {
         var result = engine!!.checkEndGame()
         assertTrue(result)
     }
+    @Test
+    fun checkEndgame_Diagonal(){
+        engine!!.setTextBoard("X___X___X")
+
+        var result = engine!!.checkEndGame()
+        assertTrue(result)
+
+        engine!!.setTextBoard("__X_X_X__")
+        result = engine!!.checkEndGame()
+        assertTrue(result)
+    }
 }
