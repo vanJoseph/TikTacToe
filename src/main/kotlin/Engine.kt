@@ -8,6 +8,7 @@ class Engine {
     private var winner = Pieces.NONE
     fun startNewGame() {
         resetGame()
+        println(board)
         while (!checkEndGame()) {
             var playerMove = getplayerInput()
             while (true) {
@@ -18,6 +19,13 @@ class Engine {
             board.setPos(playerMove[0].toInt(), playerMove[1].toInt(), playersTurn)
             changeTurn()
         }
+        if (winner==Pieces.NONE){
+            println("The game is a Draw")
+
+        }else{
+            println("Player $winner has won!!")
+        }
+        println("Thanks for playing!")
 
 
     }
@@ -33,16 +41,23 @@ class Engine {
 
     private fun resetGame() {
         turnNumber = 0
+        winner=Pieces.NONE
         board.reset()
     }
 
     fun checkEndGame(): Boolean {
-        if (checkEndgameHorizontals())
+        if (checkEndgameHorizontals()) {
+            winner=Pieces.getOpposite(playersTurn)
             return true
-        if (checkEndgameVerticals())
+        }
+        if (checkEndgameVerticals()) {
+            winner=Pieces.getOpposite(playersTurn)
             return true
-        if (checkEndgameDiagonals())
+        }
+        if (checkEndgameDiagonals()) {
+            winner=Pieces.getOpposite(playersTurn)
             return true
+        }
         if (checkEndgameNoSpace())
             return true
         return false
