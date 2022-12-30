@@ -96,4 +96,11 @@ class EngineTest {
         result = engine!!.checkEndGame()
         assertTrue(result)
     }
+    @Test
+    fun checkEndgame_NoSpace(){
+        engine!!.setTextBoard("OXXXOOXOX")
+
+        var result = engine!!.checkEndGame()
+        assertTrue(result)
+    }
 }
