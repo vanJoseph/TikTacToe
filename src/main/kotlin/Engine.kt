@@ -1,4 +1,5 @@
 import java.lang.NumberFormatException
+import javax.swing.text.Position
 
 class Engine {
     private val board = Board()
@@ -42,9 +43,20 @@ class Engine {
             return true
         if (checkEndgameDiagonals())
             return true
-        //todo check for full board
+        if (checkEndgameNoSpace())
+            return true
         return false
 
+    }
+    private fun checkEndgameNoSpace(): Boolean {
+        for(y in 0..2){
+            for(pos in 0..2){
+                var space = board.getPos(pos, y)
+                if (space == Pieces.NONE)
+                    return false
+            }
+        }
+        return true
     }
 
     private fun checkEndgameHorizontals(): Boolean {
