@@ -78,31 +78,17 @@ class Engine {
         return false
     }
 
-    private fun checkEndgameDiagonals(): Boolean { //TODO does not work need to fix
-        val xDiagonalArray = arrayOf(0, 1, 2, 2, 1, 0 )
-        val yDiagonalArray = arrayOf(0, 1, 2, 0, 1, 2 )
+    private fun checkEndgameDiagonals(): Boolean {
 
+        var diagonal = arrayOf<Pieces>(board.getPos(0,0), board.getPos(1,1), board.getPos(2,2))
 
-        for (i in 0..5) {
-            var checkPiece = Pieces.NONE
-            var checkPieceTally = 0
-            var posPiece = board.getPos(xDiagonalArray[i], yDiagonalArray[i])
-
-            if (checkPiece == Pieces.NONE) {
-
-
-                checkPiece = posPiece
-                checkPieceTally = 1
-            } else {
-                if (checkPiece != posPiece)
-                    checkPieceTally = 0
-            }
-            if (checkPieceTally == 3)
-                return true
+        if(diagonal[0]!=Pieces.NONE&&diagonal[0].toString() == diagonal[1].toString()&&diagonal[0]==diagonal[2]){
+            return true
         }
-
-
-
+        diagonal= arrayOf<Pieces>(board.getPos(0,2), board.getPos(1,1), board.getPos(2,0))
+        if(diagonal[0]!=Pieces.NONE&&diagonal[0].toString() == diagonal[1].toString()&&diagonal[0]==diagonal[2]){
+            return true
+        }
         return false
     }
 
