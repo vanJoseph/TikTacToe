@@ -23,5 +23,12 @@ enum class Pieces {
                 else -> throw InvalidCharacterException()
             }
         }
+        fun getOpposite(pieces: Pieces): Pieces{
+            return when(pieces){
+                PLAYER_X->PLAYER_O
+                PLAYER_O->PLAYER_X
+                else -> NONE
+            }
+        }
     }
 }
